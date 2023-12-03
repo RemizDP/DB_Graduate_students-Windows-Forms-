@@ -1,0 +1,16 @@
+E:\MPEI\7 семестр\Базы Данных\Отчеты\КР\KR_Interface\bin\Debug\KR_Interface.exe.config
+E:\MPEI\7 семестр\Базы Данных\Отчеты\КР\KR_Interface\bin\Debug\KR_Interface.exe
+E:\MPEI\7 семестр\Базы Данных\Отчеты\КР\KR_Interface\bin\Debug\KR_Interface.pdb
+E:\MPEI\7 семестр\Базы Данных\Отчеты\КР\KR_Interface\obj\Debug\KR_Interface.csproj.AssemblyReference.cache
+E:\MPEI\7 семестр\Базы Данных\Отчеты\КР\KR_Interface\obj\Debug\KR_Interface.LogIn.resources
+E:\MPEI\7 семестр\Базы Данных\Отчеты\КР\KR_Interface\obj\Debug\KR_Interface.Properties.Resources.resources
+E:\MPEI\7 семестр\Базы Данных\Отчеты\КР\KR_Interface\obj\Debug\KR_Interface.csproj.GenerateResource.cache
+E:\MPEI\7 семестр\Базы Данных\Отчеты\КР\KR_Interface\obj\Debug\KR_Interface.csproj.CoreCompileInputs.cache
+E:\MPEI\7 семестр\Базы Данных\Отчеты\КР\KR_Interface\obj\Debug\KR_Interface.exe
+E:\MPEI\7 семестр\Базы Данных\Отчеты\КР\KR_Interface\obj\Debug\KR_Interface.pdb
+E:\MPEI\7 семестр\Базы Данных\Отчеты\КР\KR_Interface\obj\Debug\KR_Interface.SignUp.resources
+E:\MPEI\7 семестр\Базы Данных\Отчеты\КР\KR_Interface\obj\Debug\KR_Interface.Form1.resources
+E:\MPEI\7 семестр\Базы Данных\Отчеты\КР\KR_Interface\obj\Debug\KR_Interface.AboutBox1.resources
+E:\MPEI\7 семестр\Базы Данных\Отчеты\КР\KR_Interface\obj\Debug\KR_Interface.NewRecord.resources
+E:\MPEI\7 семестр\Базы Данных\Отчеты\КР\KR_Interface\obj\Debug\KR_Interface.QueryWindow.resources
+E:\MPEI\7 семестр\Базы Данных\Отчеты\КР\KR_Interface\obj\Debug\KR_Interface.ReportDialog.resources
