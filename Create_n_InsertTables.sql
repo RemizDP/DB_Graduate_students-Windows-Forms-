@@ -40,7 +40,7 @@ CREATE TABLE Graduate_student
 	director_id INT NOT NULL FOREIGN KEY REFERENCES Scientific_director,
 	direction_id INT NOT NULL FOREIGN KEY REFERENCES Direction,
 	student_name VARCHAR (50),
-	date_of_birth VARCHAR (50),
+	date_of_birth DATE,
 	awards INT,
 	diploms VARCHAR (50)
 )
@@ -51,7 +51,7 @@ CREATE TABLE Publication
 	student_id INT NOT NULL FOREIGN KEY REFERENCES Graduate_Student,
 	publication_name VARCHAR (50),
 	publication_resource VARCHAR (50),
-	publication_date VARCHAR (50)
+	publication_date DATE
 )
 
 CREATE TABLE Defending
@@ -59,7 +59,7 @@ CREATE TABLE Defending
 	defending_id INT IDENTITY (1,1) NOT NULL PRIMARY KEY,
 	council_id INT NOT NULL FOREIGN KEY REFERENCES Science_council,
 	student_id INT NOT NULL FOREIGN KEY REFERENCES Graduate_Student,
-	defending_date VARCHAR (50),
+	defending_date DATE,
 	council_decision VARCHAR(50)
 )
 
@@ -101,20 +101,20 @@ VALUES
 (3,3)
 INSERT INTO KR_DB.dbo.Graduate_student (director_id, direction_id, student_name, date_of_birth, awards, diploms)
 VALUES
-(1,1,'Кирьянов А.Н.','01.02.2003',7,'Прикладная математика и информатика 2024'),
-(2,1,'Чубуков Д.М.','31.07.2002',10,'Прикладная математика и информатика 2024'),
-(1,2,'Ремизов П.К.','01.07.2002',3,'Прикладная математика и информатика 2020'),
-(3,3,'Владимиров В.С.','31.07.2000',15,'Математическое моделирование 2020, 2022')
+(1,1,'Кирьянов А.Н.',CONVERT(DATE,'01.02.2003', 104),7,'Прикладная математика и информатика 2024'),
+(2,1,'Чубуков Д.М.',CONVERT(DATE,'31.07.2002', 104),10,'Прикладная математика и информатика 2024'),
+(1,2,'Ремизов П.К.',CONVERT(DATE,'01.07.2002', 104),3,'Прикладная математика и информатика 2020'),
+(3,3,'Владимиров В.С.',CONVERT(DATE,'31.07.2000', 104),15,'Математическое моделирование 2020, 2022')
 INSERT INTO KR_DB.dbo.Publication (student_id, publication_name, publication_resource, publication_date)
 VALUES
-(1,'Полупроводники','Наука и техника','05.12.2025'),
-(1,'Проводники','Наука и техника','04.11.2025'),
-(2,'Суперкомпьютеры','Discovery','05.10.2026'),
-(4,'Нормальное распределение','Наука и техника','05.08.2022'),
-(4,'Статистика','Discovery','05.08.2023')
+(1,'Полупроводники','Наука и техника',CONVERT(DATE,'05.12.2025', 104)),
+(1,'Проводники','Наука и техника',CONVERT(DATE,'04.11.2025', 104)),
+(2,'Суперкомпьютеры','Discovery',CONVERT(DATE,'05.10.2026', 104)),
+(4,'Нормальное распределение','Наука и техника',CONVERT(DATE,'05.08.2022', 104)),
+(4,'Статистика','Discovery',CONVERT(DATE,'05.08.2023', 104))
 INSERT INTO KR_DB.dbo.Defending (council_id, student_id, defending_date, council_decision)
 VALUES
-(1,1,'06.12.2024','неуспешно'),
-(1,2,'07.12.2024','успешно'),
-(1,3,'06.12.2026','успешно'),
-(3,4,'06.12.2022','успешно')
+(1,1,CONVERT(DATE,'06.12.2024', 104),'неуспешно'),
+(1,2,CONVERT(DATE,'07.12.2024', 104),'успешно'),
+(1,3,CONVERT(DATE,'06.12.2026', 104),'успешно'),
+(3,4,CONVERT(DATE,'06.12.2022', 104),'успешно')
