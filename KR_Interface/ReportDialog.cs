@@ -12,8 +12,9 @@ namespace KR_Interface
 {
     public partial class ReportDialog : Form
     {
-        public string qString;
-        public string qString2 = "%";
+        public string qString1 ="";
+        public string qString2="";
+        public string qString3 = "%'";
         public ReportDialog()
         {
             InitializeComponent();
@@ -26,7 +27,7 @@ namespace KR_Interface
 
         private void button1_Click(object sender, EventArgs e)
         {
-            qString = "where Direction.category like '%";
+            qString2 = "where Direction.category like '";
             QueryWindow qw = new QueryWindow();
             qw.QueryLabel.Text = "По категории";
             qw.report = this;
@@ -36,7 +37,7 @@ namespace KR_Interface
 
         private void button2_Click(object sender, EventArgs e)
         {
-            qString = $"where Direction.direction_name like '%";
+            qString2 = $"where Direction.direction_name like '";
             QueryWindow qw = new QueryWindow();
             qw.QueryLabel.Text = "По направлению";
             qw.report = this;
@@ -46,7 +47,7 @@ namespace KR_Interface
 
         private void button3_Click(object sender, EventArgs e)
         {
-            qString = $"where Direction.direction_department like '%";
+            qString2 = $"where Direction.direction_department like '";
             QueryWindow qw = new QueryWindow();
             qw.QueryLabel.Text = "По кафедре";
             qw.report = this;
@@ -56,7 +57,7 @@ namespace KR_Interface
 
         private void button4_Click(object sender, EventArgs e)
         {
-            qString = $"where Scietific_director.director_name like '%";
+            qString2 = $"where Scientific_director.director_name like '";
             QueryWindow qw = new QueryWindow();
             qw.QueryLabel.Text = "По научному руководителю";
             qw.report = this;
@@ -66,7 +67,8 @@ namespace KR_Interface
 
         private void button8_Click(object sender, EventArgs e)
         {
-            qString = $"where Defending.defending_date ='";
+            qString1 = $"declare @d DATE = Convert(DATE, '";
+            qString2 = $"where Defending.defending_date =";
             QueryWindow qw = new QueryWindow();
             qw.QueryLabel.Text = "По дате защиты";
             qw.report = this;
@@ -76,7 +78,7 @@ namespace KR_Interface
 
         private void button7_Click(object sender, EventArgs e)
         {
-            qString = $"where Defending.council_decision = '";
+            qString2 = $"where Defending.council_decision like '";
             QueryWindow qw = new QueryWindow();
             qw.QueryLabel.Text = "По решению совета";
             qw.report = this;
@@ -86,7 +88,7 @@ namespace KR_Interface
 
         private void button6_Click(object sender, EventArgs e)
         {
-            qString = $"where Science_council.composition like '%";
+            qString2 = $"where Science_council.composition like '";
             QueryWindow qw = new QueryWindow();
             qw.QueryLabel.Text = "По составу совета";
             qw.report = this;

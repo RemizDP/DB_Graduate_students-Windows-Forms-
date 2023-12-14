@@ -236,7 +236,7 @@
             // обновитьToolStripMenuItem1
             // 
             this.обновитьToolStripMenuItem1.Name = "обновитьToolStripMenuItem1";
-            this.обновитьToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.обновитьToolStripMenuItem1.Size = new System.Drawing.Size(176, 22);
             this.обновитьToolStripMenuItem1.Text = "Обновить";
             this.обновитьToolStripMenuItem1.Click += new System.EventHandler(this.обновитьToolStripMenuItem1_Click);
             // 
@@ -251,7 +251,7 @@
             this.учетРаботыНаучныхСоветовToolStripMenuItem,
             this.отчетПоЗащитеToolStripMenuItem});
             this.поискПоЗаданиюToolStripMenuItem.Name = "поискПоЗаданиюToolStripMenuItem";
-            this.поискПоЗаданиюToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.поискПоЗаданиюToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.поискПоЗаданиюToolStripMenuItem.Text = "Поиск по заданию";
             // 
             // поискАспирантаToolStripMenuItem
@@ -568,6 +568,7 @@
             this.EditButton2.TabIndex = 2;
             this.EditButton2.Text = "Изменить";
             this.EditButton2.UseVisualStyleBackColor = true;
+            this.EditButton2.Click += new System.EventHandler(this.EditButton2_Click);
             // 
             // DeleteButton2
             // 
@@ -709,6 +710,7 @@
             this.EditButton3.TabIndex = 2;
             this.EditButton3.Text = "Изменить";
             this.EditButton3.UseVisualStyleBackColor = true;
+            this.EditButton3.Click += new System.EventHandler(this.EditButton3_Click);
             // 
             // DeleteButton3
             // 
@@ -850,6 +852,7 @@
             this.EditButton4.TabIndex = 2;
             this.EditButton4.Text = "Изменить";
             this.EditButton4.UseVisualStyleBackColor = true;
+            this.EditButton4.Click += new System.EventHandler(this.EditButton4_Click);
             // 
             // DeleteButton4
             // 
@@ -1009,6 +1012,7 @@
             this.EditButton5.TabIndex = 2;
             this.EditButton5.Text = "Изменить";
             this.EditButton5.UseVisualStyleBackColor = true;
+            this.EditButton5.Click += new System.EventHandler(this.EditButton5_Click);
             // 
             // DeleteButton5
             // 
@@ -1150,6 +1154,7 @@
             this.EditButton6.TabIndex = 2;
             this.EditButton6.Text = "Изменить";
             this.EditButton6.UseVisualStyleBackColor = true;
+            this.EditButton6.Click += new System.EventHandler(this.EditButton6_Click);
             // 
             // DeleteButton6
             // 
@@ -1363,6 +1368,7 @@
             this.EditButton7.TabIndex = 2;
             this.EditButton7.Text = "Изменить";
             this.EditButton7.UseVisualStyleBackColor = true;
+            this.EditButton7.Click += new System.EventHandler(this.EditButton7_Click);
             // 
             // DeleteButton7
             // 
@@ -1541,6 +1547,7 @@
             this.EditButton8.TabIndex = 2;
             this.EditButton8.Text = "Изменить";
             this.EditButton8.UseVisualStyleBackColor = true;
+            this.EditButton8.Click += new System.EventHandler(this.EditButton8_Click);
             // 
             // DeleteButton8
             // 

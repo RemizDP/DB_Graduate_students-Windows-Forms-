@@ -123,16 +123,16 @@ namespace KR_Interface
         }
         public void ReadSingleRow_Students(DataGridView dgv, IDataRecord record)
         {
-            dgv.Rows.Add(record.GetInt32(0), record.GetInt32(1), record.GetInt32(2), record.GetString(3), record.GetString(4), record.GetInt32(5), record.GetString(6), RowState.ModifiedNew);
+            dgv.Rows.Add(record.GetInt32(0), record.GetInt32(1), record.GetInt32(2), record.GetString(3), record.GetDateTime(4), record.GetInt32(5), record.GetString(6), RowState.ModifiedNew);
         }
         
         public void ReadSingleRow_Publications(DataGridView dgv, IDataRecord record)
         {
-            dgv.Rows.Add(record.GetInt32(0), record.GetInt32(1), record.GetString(2), record.GetString(3), record.GetString(4), RowState.ModifiedNew);
+            dgv.Rows.Add(record.GetInt32(0), record.GetInt32(1), record.GetString(2), record.GetString(3), record.GetDateTime(4), RowState.ModifiedNew);
         }
         private void ReadSingleRow_Defendings(DataGridView dgv, IDataRecord record)
         {
-            dataGridView8.Rows.Add(record.GetInt32(0), record.GetInt32(1), record.GetInt32(2), record.GetString(3), record.GetString(4), RowState.ModifiedNew);
+            dataGridView8.Rows.Add(record.GetInt32(0), record.GetInt32(1), record.GetInt32(2), record.GetDateTime(3), record.GetString(4), RowState.ModifiedNew);
         }
 
         private void RefreshDataGrid_Directions()
@@ -534,10 +534,10 @@ namespace KR_Interface
                 dgv.Rows[index].Cells[dgv.ColumnCount - 1].Value = RowState.Deleted;
                 return;
             }
-            dgv.Rows[index].Cells[5].Value = RowState.Deleted;
+            dgv.Rows[index].Cells[dgv.ColumnCount - 1].Value = RowState.Deleted;
 
         }
-        private void Update(DataGridView dgv, string tableName)
+        private void Update(DataGridView dgv, string tableName, string idName, string[] columns)
         {
             database.OpenConnection();
             for (int i = 0; i < dgv.Rows.Count; i++)
@@ -547,12 +547,22 @@ namespace KR_Interface
                 else if (rowState == RowState.Deleted)
                 {
                     var id = Convert.ToInt32(dgv.Rows[i].Cells[0].Value);
-                    var deleteQuery = $"delete from {tableName} where id = {id}";
+                    var deleteQuery = $"delete from {tableName} where {idName} = {id}";
                     var command = new SqlCommand(deleteQuery, database.GetConnection());
                     command.ExecuteNonQuery();
                 }
                 else if (rowState == RowState.Modified)
                 {
+                    var id = dgv.Rows[i].Cells[0].Value.ToString();
+                    for (int j = 0; j<columns.Length; j++)
+                    {                            
+                        var colVal = "'"+dgv.Rows[i].Cells[j+1].Value.ToString()+"'";
+                        if (columns[j].Contains("date"))
+                            colVal = $"CONVERT(DATE, '{dgv.Rows[i].Cells[j+1].Value.ToString()}', 104)";
+                        var changeQuery = $"update {tableName} set {columns[j]} = {colVal} where {idName} = '{id}'";
+                        var command = new SqlCommand(changeQuery, database.GetConnection());
+                        command.ExecuteNonQuery ();
+                    }
 
                 }
             }
@@ -667,7 +677,7 @@ namespace KR_Interface
             int director_id;
             int direction_id;
             var name = Name_TextBox6.Text;
-            var date_of_birth = Date_of_birth_TextBox6.Text;
+            var date_of_birth = DateTime.Parse(Date_of_birth_TextBox6.Text);
             int awards;
             var diploms = Diploms_TextBox6.Text;
 
@@ -691,7 +701,7 @@ namespace KR_Interface
             int student_id;
             var name = Publication_name_TextBox7.Text;
             var resource = Publication_resource_TextBox7.Text;
-            var date = Publication_date_TextBox7.Text;
+            var date = DateTime.Parse(Publication_date_TextBox7.Text);
 
             if (dgv.Rows[index].Cells[0].Value.ToString() != string.Empty)
             {
@@ -711,7 +721,7 @@ namespace KR_Interface
             int id;
             int council_id;
             int student_id;
-            var date = Date_TextBox8.Text;
+            var date = DateTime.Parse(Date_TextBox8.Text);
             var decision = Council_decision_TextBox8;
 
             if (dgv.Rows[index].Cells[0].Value.ToString() != string.Empty)
@@ -732,7 +742,8 @@ namespace KR_Interface
         }
         private void SaveButton1_Click(object sender, EventArgs e)
         {
-            Update(dataGridView1, "Direction");
+            string[] cols = { "direction_name", "category", "direction_department"};
+            Update(dataGridView1, "Direction", "direction_id", cols);
         }
 
         private void DeleteButton2_Click(object sender, EventArgs e)
@@ -742,7 +753,8 @@ namespace KR_Interface
 
         private void SaveButton2_Click(object sender, EventArgs e)
         {
-            Update(dataGridView2, "Scientific_director");
+            string[] cols = { "", "" };
+            Update(dataGridView2, "Scientific_director", "director_id", cols);
         }
 
         private void DeleteButton3_Click(object sender, EventArgs e)
@@ -752,7 +764,8 @@ namespace KR_Interface
 
         private void SaveButton3_Click(object sender, EventArgs e)
         {
-            Update(dataGridView3, "Scientific_director_Direction");
+            string[] cols = { "", "" };
+            Update(dataGridView3, "Scientific_director_Direction", "Scientific_director_Direction", cols);
         }
 
         private void DeleteButton4_Click(object sender, EventArgs e)
@@ -762,7 +775,8 @@ namespace KR_Interface
 
         private void SaveButton4_Click(object sender, EventArgs e)
         {
-            Update(dataGridView4, "Science_council");
+            string[] cols = { "", "" };
+            Update(dataGridView4, "Science_council", "council_id", cols);
         }
 
         private void DeleteButton5_Click(object sender, EventArgs e)
@@ -773,7 +787,8 @@ namespace KR_Interface
 
         private void SaveButton5_Click(object sender, EventArgs e)
         {
-            Update(dataGridView5, "Science_council_Direction");
+            string[] cols = { "", "" };
+            Update(dataGridView5, "Science_council_Direction", "Science_council_Direction_id", cols);
         }
 
         private void DeleteButton6_Click(object sender, EventArgs e)
@@ -783,7 +798,8 @@ namespace KR_Interface
 
         private void SaveButton6_Click(object sender, EventArgs e)
         {
-            Update(dataGridView6, "Graduate_student");
+            string[] cols = { "director_id", "direction_id", "student_name", "date_of_birth", "awards", "diploms" };
+            Update(dataGridView6, "Graduate_student", "student_id", cols);
         }
 
         private void DeleteButton7_Click(object sender, EventArgs e)
@@ -793,7 +809,8 @@ namespace KR_Interface
 
         private void SaveButton7_Click(object sender, EventArgs e)
         {
-            Update(dataGridView7, "Publication");
+            string[] cols = { "", "" };
+            Update(dataGridView7, "Publication", "publication_id", cols);
         }
 
         private void DeleteButton8_Click(object sender, EventArgs e)
@@ -803,7 +820,8 @@ namespace KR_Interface
 
         private void SaveButton8_Click(object sender, EventArgs e)
         {
-            Update(dataGridView7, "Defending");
+            string[] cols = { "", "" };
+            Update(dataGridView7, "Defending", "defending_id", cols);
         }
 
         private void EditButton1_Click(object sender, EventArgs e)
